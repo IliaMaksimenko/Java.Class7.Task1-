@@ -1,25 +1,24 @@
 package ru.netology.stats;
 
+import static java.lang.Long.sum;
+
 public class StatsService {
 
     public int sumSales(int[] sales) {
 
         int sumAllSales = 0;
 
-        for (int sale = 0; sale < sales.length; sale++) {
-            sumAllSales = sumAllSales + sales[sale];
+        for (int i : sales) {
+            sumAllSales += i;
         }
         return sumAllSales;
     }
 
     public int averageSumSales(int[] sales) {
 
-        int averageSumAllSales = 0;
+        int sum = sumSales(sales);
 
-        for (int sale = 0; sale < sales.length; sale++) {
-            averageSumAllSales = averageSumAllSales + sales[sale];
-        }
-        return averageSumAllSales / sales.length;
+        return sum / sales.length;
     }
 
 
@@ -53,17 +52,11 @@ public class StatsService {
 
     public int belowTheAverageSumSales(int[] sales) {
 
-        int sumAllSales = 0;
-
-        for (int sale = 0; sale < sales.length; sale++) {
-            sumAllSales = sumAllSales + sales[sale];
-        }
-
-        int averageSumAllSales = sumAllSales / sales.length;
+        int average = averageSumSales(sales);
         int month = 0;
 
-        for (int sale = 0; sale < sales.length; sale++) {
-            if (sales[sale] < averageSumAllSales) {
+        for (int i : sales) {
+            if (i < average) {
                 month++;
             }
         }
@@ -73,17 +66,11 @@ public class StatsService {
 
     public int aboveTheAverageSumSales(int[] sales) {
 
-        int sumAllSales = 0;
-
-        for (int sale = 0; sale < sales.length; sale++) {
-            sumAllSales = sumAllSales + sales[sale];
-        }
-
-        int averageSumAllSales = sumAllSales / sales.length;
+        int average = averageSumSales(sales);
         int month = 0;
 
-        for (int sale = 0; sale < sales.length; sale++) {
-            if (sales[sale] > averageSumAllSales) {
+        for (int i : sales) {
+            if (i > average) {
                 month++;
             }
         }
